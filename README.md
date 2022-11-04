@@ -94,10 +94,10 @@ Execute the notebook `notebooks/visualize.ipynb` using your choice of notebook e
 
 ## Explanation of visualizations
 
-The visualization below shows how the pandamic progressed in Oakland County, MI. The first thing captured is the days when masking mandates were present. 1 represents that the mandates were active and 0 represents that mandates were not in effect.  
-We next have the daily case trends which can be noisy.  
-7 day daily moving average smoothens the daily case trends.  
-Finally, we also plot an estimate of the total number of infected individuals at any given time.
+The visualization below shows how the pandemic progressed in Oakland County, MI. The first thing captured is the days when masking mandates were present. 1 represents that the mandates were active and 0 represents that mandates were not in effect.  
+We next have the daily case trends which can be noisy. Daily cases are calculated by subtracting the aggregate cases column from the aggregate cases the previous day. This gives the number of cases that were detected today.  
+The next plot is the 7 day daily moving average of the daily cases. This smoothens the daily case trends as daily cases can be very noisy. Averaging them across seven days reduces the noise.  
+Finally, we also plot an estimate of the total number of infected individuals at any given time. To get this estimate we sum all the cases in the last 10 days as we assume any tested person remains infectious for a total of 10 days. Secondly to get total infections we multiply it by a factor of 9 because of a study that estimated the actual infections that are missed since they were never tested.
 
 ![pandemic progression](visualizations/main_viz.png)
 
@@ -111,6 +111,9 @@ This was used to estimate the beta parameters of the SIRS model in order to dete
 ![wave 4 fit vs infections](visualizations/wave4_fit.png)
 
 ## Reflection
-I have used a very simple SIRS model to determine the impact of masking mandates. This simplistic analysis doesn't find any significant difference in the progression in Covid 19 when masking mandates were in place when compared to when there were no mandates.  
+As part of the collaboration multiple different approaches were suggested. Some of these suggestions were along the lines of change point analysis, using time series based models such as ARIMA. However, I am skeptical of those approaches since it is tough to model the impact of mask in them. That is the reason why I have decided to go for a compartmental model based approach. I got the inspiration for this from Professor David's lecture where he had presented the case trend for different assumptions. I have then relied on Google to search for content to better understand how compartmental models work.
+
+After some research, I have decided to use a very simple SIRS model to determine the impact of masking mandates. This simplistic analysis doesn't find any significant difference in the progression in Covid 19 when masking mandates were in place when compared to when there were no mandates.  
 However, this is a very simplistic analysis and doesn't take into account factors like human networks, population characteristics, immunity due to vaccination, previous infections. Also we have only looked at a single county.  
 We need to be careful about drawing conclusions from this as this model doesn't fully capture the intricate details necessary to determine the impact of masking. Further, we are only looking at the cases that tested positive and we don't have sufficient data to determine what the actual infection progression looked like. Thus, we need to take into account the limitations of both the data and the model while drawing insights from any data science project.
+From the collaboration aspect I learned how to think about the problem from different viewpoints. I also learned how to go about researching different approaches quickly to identify which approach looks the most appropriate for the task at hand.
