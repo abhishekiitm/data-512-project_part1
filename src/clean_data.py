@@ -47,12 +47,13 @@ def clean_compliance(mask_compliance_df):
     mask_compliance_df.to_parquet('data_clean/mask_compliance.pq')
 
 
-raw_cases = pd.read_csv('data_raw/RAW_us_confirmed_cases.csv')
-raw_deaths = pd.read_csv('data_raw/RAW_us_deaths.csv')
-mask_mandates_df = pd.read_csv('data_raw/mask-mandate-by-county.csv')
-mask_compliance_df = pd.read_csv('data_raw/mask-use-by-county.csv')
-
 if __name__ == "__main__":
+
+    raw_cases = pd.read_csv('data_raw/RAW_us_confirmed_cases.csv')
+    raw_deaths = pd.read_csv('data_raw/RAW_us_deaths.csv')
+    mask_mandates_df = pd.read_csv('data_raw/mask-mandate-by-county.csv')
+    mask_compliance_df = pd.read_csv('data_raw/mask-use-by-county.csv')
+
     clean_cases(raw_cases)
     print("raw cases cleaned")
 
